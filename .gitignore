@@ -118,3 +118,7 @@ boot.img
 zip/boot.img
 zip/*.zip
 kernel_update*.zip
+
+# Old Config Files
+arch/arm/configs/custom_expressatt_defconfig.old
+scripts/kconfig/mconf
