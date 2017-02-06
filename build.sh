@@ -4,7 +4,7 @@
 # setup environment
 # edit CC to match your toolchain path if you're not working inside the CM/AOSP built tree
 #
-CC="../../../prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin/arm-eabi-"
+CC="../arm-eabi-4.6/bin/arm-eabi-"
 DATE=$(date +%m%d)
 J=$(cat /proc/cpuinfo | grep "^processor" | wc -l)
 HOME=$(pwd)
@@ -95,7 +95,7 @@ TRY make -j $J ARCH=arm CROSS_COMPILE=$CC modules
 # package
 #
 if [ ! -e arch/arm/boot/zImage ]; then
-	DIE "Sumthin done fucked up. I suggest you fix it."
+	DIE "Build Unsuccessful... :-( "
 else
 	MKBOOTIMG
 	ZIP
