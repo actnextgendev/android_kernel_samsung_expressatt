@@ -30,7 +30,7 @@ loglevel 3
 # setup the global environment
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
     export LD_LIBRARY_PATH /vendor/lib:/system/lib
-    export ANDROID_BOOTLOGO 1
+    export ANDROID_BOOTLOGO 0
     export ANDROID_ROOT /system
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
@@ -680,22 +680,6 @@ service mobex-daemon /system/bin/npsmobex
     user system
     group system radio inet sdcard_rw
 
-service surfaceflinger /system/bin/surfaceflinger
-    class main
-    user system
-    group graphics
-    onrestart restart zygote
-    onrestart restart gsiff_daemon
-
-service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
-    class main
-    socket zygote stream 660 root system
-    onrestart write /sys/android_power/request_state wake
-    onrestart write /sys/power/state on
-    onrestart restart media
-    onrestart restart netd
-    onrestart restart gsiff_daemon
-
 service drm /system/bin/drmserver
     class main
     user drm
@@ -717,13 +701,6 @@ service powersnd /system/bin/samsungpowersoundplay
     class main
     user media
     group system
-    disabled
-    oneshot
-
-service bootanim /system/bin/bootanimation
-    class main
-    user graphics
-    group graphics system
     disabled
     oneshot
 
