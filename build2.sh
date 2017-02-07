@@ -4,7 +4,7 @@
 # Will be changed for portability later, need to compile a clean copy now.
 #
 
-export PATH=/home/anthony/Projects/arm-eabi-4.6/bin
+export PATH=/home/anthony/Projects/arm-eabi-4.6/bin:$PATH
 
 # Set compiler for arm-eabi-4.6 default
 
