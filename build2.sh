@@ -13,5 +13,3 @@ export CROSS_COMPILE=arm-eabi-
 # Set Arch for compile
 
 export ARCH=arm
-
-make

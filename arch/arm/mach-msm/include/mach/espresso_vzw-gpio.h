@@ -28,6 +28,8 @@
 #define GPIO_NC_3				3
 #define GPIO_NC_8				8
 #define GPIO_NC_9				9
+#define GPIO_NC_36                              36
+#define GPIO_NC_37                              37
 #define GPIO_NC_47				47
 #define GPIO_NC_62				62
 #define GPIO_NC_77				77
@@ -41,6 +43,7 @@
 #define GPIO_CAM_CORE_EN			6
 #define GPIO_CODEC_I2C_SDA              8
 #define GPIO_CODEC_I2C_SCL              9
+#define GPIO_LCD_22V_EN			10
 #define GPIO_LVDS_RST			10
 #define GPIO_MXT_TS_IRQ			11
 
@@ -103,6 +106,8 @@
 #define GPIO_KS8851_RST			89
 
 #define GPIO_IF_CON_SENSE		92
+
+#define GPIO_RF_TOUCH_MSM2		93
 
 #define GPIO_PS_EN			97
 

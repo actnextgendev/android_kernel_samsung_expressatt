@@ -46,18 +46,21 @@ extern void sec_gaf_supply_rqinfo(unsigned short curr_offset,
 				  unsigned short rq_offset);
 extern int sec_debug_is_enabled(void);
 extern int sec_debug_is_enabled_for_ssr(void);
+extern void sec_debug_set_qc_dload_magic(int on);
 #else
 static inline int sec_debug_init(void)
 {
+	return 0;
 }
-static inline int sec_debug_dump_stack(void) {}
-static inline void sec_debug_check_crash_key(unsigned int code, int value) {}
-
+static inline int sec_debug_dump_stack(void) {
+	return 0;
+}
+static inline void sec_debug_check_crash_key(unsigned int code, int value) {
+}
 static inline void sec_getlog_supply_fbinfo(void *p_fb, u32 res_x, u32 res_y,
 					    u32 bpp, u32 frames)
 {
 }
-
 static inline void sec_getlog_supply_meminfo(u32 size0, u32 addr0, u32 size1,
 					     u32 addr1)
 {
@@ -68,16 +71,13 @@ static inline void sec_getlog_supply_loggerinfo(void *p_main,
 						void *p_system)
 {
 }
-
 static inline void sec_getlog_supply_kloginfo(void *klog_buf)
 {
 }
-
 static inline void sec_gaf_supply_rqinfo(unsigned short curr_offset,
 					 unsigned short rq_offset)
 {
 }
-
 static inline int sec_debug_is_enabled(void) {return 0; }
 #endif
 
@@ -159,7 +159,6 @@ static inline void debug_rwsemaphore_up_log(struct rw_semaphore *sem)
 #endif
 
 /* klaatu - schedule log */
-#ifdef CONFIG_SEC_DEBUG_SCHED_LOG
 #define SCHED_LOG_MAX 1024
 
 struct irq_log {
@@ -191,7 +190,6 @@ struct timer_log {
 	int int_lock;
 	void *fn;
 };
-#endif	/* CONFIG_SEC_DEBUG_SCHED_LOG */
 
 #ifdef CONFIG_SEC_DEBUG_SEMAPHORE_LOG
 #define SEMAPHORE_LOG_MAX 100
@@ -222,8 +220,8 @@ struct rwsem_debug {
 
 #endif	/* CONFIG_SEC_DEBUG_SEMAPHORE_LOG */
 
-#ifdef CONFIG_SEC_DEBUG_MSG_LOG
 #define MSG_LOG_MAX 1024
+
 struct secmsg_log {
 	unsigned long long time;
 	char msg[64];
@@ -231,13 +229,14 @@ struct secmsg_log {
 	void *caller1;
 	char *task;
 };
+
+#ifdef CONFIG_SEC_DEBUG_MSG_LOG
 #define secdbg_msg(fmt, ...) \
 	sec_debug_msg_log(__builtin_return_address(0), fmt, ##__VA_ARGS__)
 #else
 #define secdbg_msg(fmt, ...)
 #endif
 
-#ifdef CONFIG_SEC_DEBUG_DCVS_LOG
 #define DCVS_LOG_MAX 256
 
 struct dcvs_debug {
@@ -246,6 +245,8 @@ struct dcvs_debug {
 	unsigned int prev_freq;
 	unsigned int new_freq;
 };
+
+#ifdef CONFIG_SEC_DEBUG_DCVS_LOG
 extern void sec_debug_dcvs_log(int cpu_no, unsigned int prev_freq,
 			unsigned int new_freq);
 #else
@@ -256,8 +257,8 @@ static inline void sec_debug_dcvs_log(int cpu_no, unsigned int prev_freq,
 
 #endif
 
-#ifdef CONFIG_SEC_DEBUG_FUELGAUGE_LOG
 #define FG_LOG_MAX 128
+
 
 struct fuelgauge_debug {
 	unsigned long long time;
@@ -265,6 +266,8 @@ struct fuelgauge_debug {
 	unsigned short soc;
 	unsigned short charging_status;
 };
+
+#ifdef CONFIG_SEC_DEBUG_FUELGAUGE_LOG
 extern void sec_debug_fuelgauge_log(unsigned int voltage, unsigned short soc,
 			unsigned short charging_status);
 #else
@@ -520,11 +523,7 @@ extern int sec_debug_subsys_set_logger_info(
 	struct sec_debug_subsys_logger_log_info *log_info);
 int sec_debug_save_die_info(const char *str, struct pt_regs *regs);
 int sec_debug_save_panic_info(const char *str, unsigned int caller);
-extern void sec_debug_set_qc_dload_magic(int on);
 extern uint32_t global_pvs;
 #endif
 
-#ifdef CONFIG_SEC_DEBUG_DOUBLE_FREE
-extern void *kfree_hook(void *p, void *caller);
-#endif
 #endif	/* SEC_DEBUG_H */

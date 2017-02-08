@@ -31,9 +31,17 @@
 
 #define GPIO_CODEC_I2C_SDA              8
 #define GPIO_CODEC_I2C_SCL              9
+
+#define GPIO_NC_8                       8
+#define GPIO_NC_9                       9
+#define GPIO_NC_62                      62
+#define GPIO_NC_66                      66
+#define GPIO_NC_94                      94
+
 #define GPIO_LCD_22V_EN			10
 #define GPIO_MXT_TS_IRQ			11
 #define GPIO_FPGA_CS			14
+#define GPIO_MHL_WAKE_UP		15
 #define GPIO_VT_STBY				18
 
 #define GPIO_I2C_DATA_CAM				20
@@ -67,11 +75,7 @@
 #define GPIO_SENSOR_ALS_SDA		63
 #define GPIO_SENSOR_ALS_SCL		64
 #define GPIO_FUEL_INT			67
-#ifdef CONFIG_INPUT_YAS_SENSORS
-#define GPIO_ACC_INT_N			69
-#else
 #define GPIO_MPU3050_INT		69
-#endif
 #define GPIO_VIB_PWM                    70
 
 #ifdef CONFIG_KEYBOARD_CYPRESS_TOUCH
@@ -84,18 +88,18 @@
 #define GPIO_CAM2_RST_N				76
 #define GPIO_VIB_ON                     77
 
-#define GPIO_KS8851_RST			89
-#define GPIO_KS8851_IRQ			90
+#define GPIO_MHL_SEL			82
 
 #define GPIO_NFC_FIRMWARE		92
 #ifdef CONFIG_KEYBOARD_CYPRESS_TOUCH
 #define	GPIO_TOUCH_KEY_EN		94
 #endif
-#define GPIO_MHL_RST			-1
-#define GPIO_MHL_EN			-1
-#define GPIO_MHL_SDA			-1
-#define GPIO_MHL_SCL			-1
-#define GPIO_MHL_INT			-1
+#define GPIO_MHL_RST			 1
+#define GPIO_MHL_EN			 19
+#define GPIO_MHL_SDA			 95
+#define GPIO_MHL_SCL			 96
+#define GPIO_PS_EN			 97 
+#define GPIO_MHL_INT			 99
 
 #define GPIO_NFC_IRQ			106
 #define GPIO_CAM1_RST_N				107
@@ -112,7 +116,7 @@
 #define GPIO_NC_102				102
 
 /* ES305B GPIO */
-#define MSM_AUD_A2220_WAKEUP		35
+#define MSM_AUD_A2220_WAKEUP    35
 #define MSM_AUD_A2220_RESET		75
 
 /* PMIC8921 MPP */
