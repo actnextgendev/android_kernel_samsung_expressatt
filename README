@@ -1,7 +1,11 @@
-The Linux-experiment Project for the Samsung i437
+VERY EXPERIMENTAL - not responsible for possible nuclear war by using this code
 
-	I am trying to accomplish a successfull and controllable linux VT boot instead of the
-	Android screens and apps that we are all used to.
-
-	If this project is successfull then later it may be used with freedreno for a 
-	graphical boot in X11 or Wayland.
+	Due to the unknown issues experimented in compiling I am attempting to update any offending code to
+	try and fix many recurring problems. If this is successful it will be merged to the main linux-experiment
+	branch.
+	
+	The code that I am referencing is @Cyanogenmod/android_kernel_samsung_d2 soon I hope to also use msm 3.0
+	kernel code to get the best possible drivers.
+	
+	If there is anyone who finds that I need to license something or give any credit where it isn't already
+	just comment so on the issue for credit/licensing.
